@@ -3,6 +3,8 @@ import NavBar from "./Components/Navbar";
 import Banner from "./Components/Banner";
 import Footer from "./Components/Footer";
 import Models from "./Components/Models";
+import Cart from "./Components/Cart";
+import { useState } from "react";
 
 const getData = async () => {
   const res = await fetch("/data.json");
@@ -13,11 +15,33 @@ const dataPromise = getData();
 console.log(dataPromise);
 
 function App() {
+  const [activeTab, setActiveTab] = useState("model");
+  console.log(activeTab);
   return (
     <div>
       <NavBar />
+      defaultChecked
       <Banner />
-      <Models dataPromise = {dataPromise} />
+      {/* name of each tab group should be unique */}
+      <div className="tabs tabs-box justify-center bg-transparent ">
+        <input
+          type="radio"
+          name="my_tabs_1"
+          className={`tab rounded-full w-40 ${activeTab == "model"? "bg-black": ""}`}
+          aria-label="Models"
+          onClick={() => setActiveTab("model")}
+          defaultChecked
+        />
+        <input
+          type="radio"
+          name="my_tabs_1"
+          className={`tab rounded-full w-40 ${activeTab == "cart"? "bg-black": ""}`}
+          aria-label="Cart"
+          onClick={() => setActiveTab("cart")}
+        />
+      </div>
+      {activeTab === "model" && <Models dataPromise={dataPromise} />}
+      {activeTab === "cart" && <Cart />}
       <Footer />
     </div>
   );
