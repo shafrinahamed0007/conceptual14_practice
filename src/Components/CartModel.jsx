@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-const CartModel = ({ data }) => {
+const CartModel = ({ data, carts, setCarts }) => {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const handleSubscribed = () => {
     if (!isSubscribed) {
@@ -10,6 +10,7 @@ const CartModel = ({ data }) => {
     } else {
       toast.info(`${data.title} added already!`);
     }
+    setCarts([...carts, data]);
   };
   return (
     <div className="shadow-lg rounded-lg border border-zin-300 p-6 my-5 space-y-5 overflow-hidden">

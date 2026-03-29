@@ -16,6 +16,8 @@ console.log(dataPromise);
 
 function App() {
   const [activeTab, setActiveTab] = useState("model");
+  const [carts, setCarts] = useState([]);
+  console.log(carts);
   console.log(activeTab);
   return (
     <div>
@@ -27,7 +29,7 @@ function App() {
         <input
           type="radio"
           name="my_tabs_1"
-          className={`tab rounded-full w-40 ${activeTab == "model"? "bg-black": ""}`}
+          className={`tab rounded-full w-40 ${activeTab == "model" ? "bg-black" : ""}`}
           aria-label="Models"
           onClick={() => setActiveTab("model")}
           defaultChecked
@@ -35,13 +37,15 @@ function App() {
         <input
           type="radio"
           name="my_tabs_1"
-          className={`tab rounded-full w-40 ${activeTab == "cart"? "bg-black": ""}`}
+          className={`tab rounded-full w-40 ${activeTab == "cart" ? "bg-black" : ""}`}
           aria-label="Cart"
           onClick={() => setActiveTab("cart")}
         />
       </div>
-      {activeTab === "model" && <Models dataPromise={dataPromise} />}
-      {activeTab === "cart" && <Cart />}
+      {activeTab === "model" && (
+        <Models dataPromise={dataPromise} carts={carts} setCarts={setCarts} />
+      )}
+      {activeTab === "cart" && <Cart carts={carts} />}
       <Footer />
     </div>
   );
