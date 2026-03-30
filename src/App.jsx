@@ -45,7 +45,7 @@ function App() {
       {activeTab === "model" && (
         <Models dataPromise={dataPromise} carts={carts} setCarts={setCarts} />
       )}
-      {activeTab === "cart" && <Cart carts={carts} />}
+      {activeTab === "cart" && <Cart carts={carts} setCarts={setCarts} />}
       <Footer />
     </div>
   );
