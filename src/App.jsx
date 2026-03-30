@@ -21,7 +21,7 @@ function App() {
   console.log(activeTab);
   return (
     <div>
-      <NavBar />
+      <NavBar cartCount={carts.length} />
       defaultChecked
       <Banner />
       {/* name of each tab group should be unique */}
@@ -38,7 +38,7 @@ function App() {
           type="radio"
           name="my_tabs_1"
           className={`tab rounded-full w-40 ${activeTab == "cart" ? "bg-black" : ""}`}
-          aria-label="Cart"
+          aria-label={`Cart (${carts.length})`}
           onClick={() => setActiveTab("cart")}
         />
       </div>
